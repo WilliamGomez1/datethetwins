@@ -1,5 +1,5 @@
 (function () {
-  const { h, renderPair, promptCard, pairName, icon, storage } = window.DTT;
+  const { h, renderPair, promptCard, pairName, icon, storage, getSupabase } = window.DTT;
   const DRAFT_KEY = 'dtt-application-draft-v1';
   const app = document.getElementById('app');
 
@@ -386,36 +386,64 @@
     if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  const NOT_CONNECTED = 'Applications aren\u2019t open yet. Please check back soon!';
+
+  async function uploadPhotos(sb) {
+    const all = photos.flat();
+    let done = all.filter((p) => p.path).length;
+    for (const p of all) {
+      if (p.path) continue; // already uploaded on an earlier attempt
+      nextBtn.textContent = `Uploading photos (${done + 1}/${all.length})\u2026`;
+      const ext = p.blob.type === 'image/gif' ? 'gif' : 'jpg';
+      const path = `uploads/${crypto.randomUUID()}.${ext}`;
+      const { error } = await sb.storage.from('applicant-photos')
+        .upload(path, p.blob, { contentType: p.blob.type || 'image/jpeg', upsert: false });
+      if (error) throw new Error(`A photo failed to upload (${error.message}). Please try again.`);
+      p.path = path;
+      done++;
+    }
+  }
+
   async function submit() {
+    const sb = getSupabase();
+    if (!sb) { alertEl.textContent = NOT_CONNECTED; return; }
     nextBtn.disabled = true;
     backBtn.disabled = true;
-    nextBtn.textContent = 'Submitting…';
-    const fd = new FormData();
-    const payload = { ...state, twins: state.twins.map((t) => ({ ...t, age: Number(t.age) })) };
-    fd.append('profile', JSON.stringify(payload));
-    photos.forEach((list, i) => list.forEach((p, j) => {
-      const ext = p.blob.type === 'image/gif' ? 'gif' : 'jpg';
-      fd.append(`photos${i}`, p.blob, `twin${i + 1}-photo${j + 1}.${ext}`);
-    }));
     try {
-      const res = await fetch('/api/applications', { method: 'POST', body: fd });
-      const body = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        if (Array.isArray(body.fields) && body.fields.length) {
-          const target = Math.min(...body.fields.map((f) => stepForPath(f.field)));
-          step = target;
-          body.fields.forEach((f) => showError(f.field, f.message));
+      await uploadPhotos(sb);
+      nextBtn.textContent = 'Submitting\u2026';
+      const payload = {
+        ...state,
+        twins: state.twins.map((t, i) => ({ ...t, age: Number(t.age), photos: photos[i].map((p) => p.path) })),
+      };
+      const { error } = await sb.rpc('submit_application', { profile: payload });
+      if (error) {
+        let fields = [];
+        if (error.hint === 'validation') { try { fields = JSON.parse(error.details); } catch { /* ignore */ } }
+        if (fields.length) {
+          step = Math.min(...fields.map((f) => stepForPath(f.field)));
+          fields.forEach((f) => showError(f.field, f.message));
+          // A photo the database rejected gets re-uploaded on the next try.
+          fields.filter((f) => /\.photos$/.test(f.field))
+            .forEach((f) => photos[Number(f.field.split('.')[1])].forEach((p) => { p.path = null; }));
           setTimeout(focusFirstError, 50);
         } else {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        alertEl.textContent = body.error || 'Something went wrong. Please try again.';
+        alertEl.textContent = ['validation', 'rate_limited'].includes(error.hint)
+          ? error.message
+          : 'Something went wrong sending your application. Please try again.';
+        if (!['validation', 'rate_limited'].includes(error.hint)) console.error(error);
         return;
       }
       storage.remove(DRAFT_KEY);
       showSuccess();
-    } catch {
-      alertEl.textContent = 'Network error. Check your connection and try again.';
+    } catch (e) {
+      console.error(e);
+      alertEl.textContent = e.message && e.message.startsWith('A photo')
+        ? e.message
+        : 'Network error. Check your connection and try again.';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } finally {
       nextBtn.disabled = false;
       backBtn.disabled = false;
@@ -434,7 +462,7 @@
       heart,
       h('h1', null, 'Application sent!'),
       h('p', null, `Thanks, ${pairName(state.twins)}. The twins will read your profile, and if it’s a match we’ll reach out at ${state.contact.email}.`),
-      h('a', { class: 'btn btn-primary', href: '/' }, 'Back to home')));
+      h('a', { class: 'btn btn-primary', href: './' }, 'Back to home')));
     window.scrollTo({ top: 0 });
   }
 
@@ -457,10 +485,11 @@
     backBtn.addEventListener('click', () => { clearAllErrors(); goTo(Math.max(0, step - 1)); });
     app.replaceChildren(form);
     goTo(0, { scroll: false });
+    if (!getSupabase()) {
+      form.prepend(h('p', { class: 'preview-note' }, NOT_CONNECTED + ' You can look around, but you won\u2019t be able to submit yet.'));
+    }
   }
 
-  fetch('/api/options')
-    .then((r) => r.json())
-    .then((o) => { options = o; build(); })
-    .catch(() => { app.replaceChildren(h('p', { class: 'empty' }, "Couldn't load the application. Please refresh.")); });
+  options = window.DTT_OPTIONS;
+  build();
 })();

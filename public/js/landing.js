@@ -5,7 +5,7 @@
 
   setText('[data-year]', new Date().getFullYear());
 
-  fetch('/api/featured')
+  fetch('content/twins.json', { cache: 'no-cache' })
     .then((r) => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
     .then((data) => {
       const names = pairName(data.twins);
@@ -27,10 +27,10 @@
       pairImg.alt = names;
 
       document.querySelector('[data-profiles]')
-        .replaceChildren(renderPair(data.twins, data.twins.map((t) => t.photos), { likeHref: '/apply' }));
+        .replaceChildren(renderPair(data.twins, data.twins.map((t) => t.photos), { likeHref: 'apply' }));
 
       const shared = document.querySelector('[data-pair-prompts]');
-      (data.sharedPrompts || []).forEach((p) => shared.append(promptCard(p, '/apply', 'From both of us')));
+      (data.sharedPrompts || []).forEach((p) => shared.append(promptCard(p, 'apply', 'From both of us')));
     })
     .catch((err) => {
       console.error(err);

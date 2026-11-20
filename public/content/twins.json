@@ -3,7 +3,7 @@
   "siteName": "Date the Twins",
   "headline": "Two of a kind, looking for two of a kind.",
   "subhead": "Meet our featured twins. If you and your twin want to go on a double date with them, build your joint profile and apply.",
-  "pairPhoto": "/images/placeholders/pair.svg",
+  "pairPhoto": "images/placeholders/pair.svg",
   "twinType": "Identical",
   "city": "New York, NY",
   "twins": [
@@ -16,9 +16,9 @@
       "hometown": "Austin, TX",
       "height": "5'7\"",
       "photos": [
-        "/images/placeholders/twin-a-1.svg",
-        "/images/placeholders/twin-a-2.svg",
-        "/images/placeholders/twin-a-3.svg"
+        "images/placeholders/twin-a-1.svg",
+        "images/placeholders/twin-a-2.svg",
+        "images/placeholders/twin-a-3.svg"
       ],
       "prompts": [
         { "prompt": "The way to win me over is", "answer": "A perfectly timed pun and a willingness to split dessert. (I'll still take the bigger half.)" },
@@ -35,9 +35,9 @@
       "hometown": "Austin, TX",
       "height": "5'7\"",
       "photos": [
-        "/images/placeholders/twin-b-1.svg",
-        "/images/placeholders/twin-b-2.svg",
-        "/images/placeholders/twin-b-3.svg"
+        "images/placeholders/twin-b-1.svg",
+        "images/placeholders/twin-b-2.svg",
+        "images/placeholders/twin-b-3.svg"
       ],
       "prompts": [
         { "prompt": "I'm known for", "answer": "Being 4 minutes older and never letting anyone forget it." },

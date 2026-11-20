@@ -3,20 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://*.supabase.co; connect-src 'self' https://*.supabase.co wss://*.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="robots" content="noindex">
   <title>Applications · Date the Twins</title>
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header class="nav">
     <div class="container nav-inner">
-      <a class="logo" href="/"><img class="logo-mark" src="/images/logo.svg" alt=""><span>Applications</span></a>
+      <a class="logo" href="./"><img class="logo-mark" src="images/logo.svg" alt=""><span>Applications</span></a>
       <nav class="nav-links" aria-label="Main">
-        <a href="/">View site</a>
+        <a href="./">View site</a>
       </nav>
     </div>
   </header>
@@ -27,7 +28,9 @@
     </aside>
     <section class="admin-detail" data-detail aria-live="polite"></section>
   </main>
-  <script src="/js/common.js"></script>
-  <script src="/js/admin.js"></script>
+  <script src="js/config.js"></script>
+  <script src="vendor/supabase-2.118.0.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/admin.js"></script>
 </body>
 </html>

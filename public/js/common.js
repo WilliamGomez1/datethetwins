@@ -139,6 +139,17 @@
     remove(key) { try { localStorage.removeItem(key); } catch { /* ignore */ } },
   };
 
-  window.DTT = { h, icon, renderTwinProfile, renderPair, promptCard, pairName, navScrollShadow, storage };
+  // Supabase client (null until public/js/config.js is filled in).
+  let client;
+  function getSupabase() {
+    if (client !== undefined) return client;
+    const cfg = window.DTT_CONFIG || {};
+    client = cfg.supabaseUrl && cfg.supabaseAnonKey && window.supabase
+      ? window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey)
+      : null;
+    return client;
+  }
+
+  window.DTT = { h, icon, renderTwinProfile, renderPair, promptCard, pairName, navScrollShadow, storage, getSupabase };
   document.addEventListener('DOMContentLoaded', navScrollShadow);
 })();

@@ -1,20 +1,14 @@
 {
   "name": "datethetwins",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Double dates for twins: apply to go on a double date with our featured twins.",
-  "main": "server.js",
   "scripts": {
-    "start": "node --env-file-if-exists=.env --disable-warning=ExperimentalWarning server.js",
-    "dev": "node --env-file-if-exists=.env --disable-warning=ExperimentalWarning --watch server.js",
-    "test": "node --disable-warning=ExperimentalWarning --test test/*.test.js"
+    "start": "node scripts/serve.js",
+    "test": "bash supabase/test/run.sh"
   },
   "engines": {
-    "node": ">=22.13"
+    "node": ">=18"
   },
-  "license": "UNLICENSED",
-  "dependencies": {
-    "express": "^4.22.3",
-    "multer": "^2.5.0"
-  }
+  "license": "UNLICENSED"
 }

@@ -1,6 +1,6 @@
-// Shared form options + limits. Served to the browser via GET /api/options so
-// the client and server always agree.
-module.exports = {
+// Form options + limits for the application builder.
+// The database (supabase/schema.sql) enforces the same limits — keep them in sync.
+window.DTT_OPTIONS = {
   limits: {
     minPhotosPerTwin: 2,
     maxPhotosPerTwin: 6,
