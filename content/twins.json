@@ -1,0 +1,53 @@
+{
+  "_comment": "Edit this file to change the featured twins on the landing page. Put real photos in public/images/twins/ and point the 'photos' paths at them.",
+  "siteName": "Date the Twins",
+  "headline": "Two of a kind, looking for two of a kind.",
+  "subhead": "Meet our featured twins. If you and your twin want to go on a double date with them, build your joint profile and apply.",
+  "pairPhoto": "/images/placeholders/pair.svg",
+  "twinType": "Identical",
+  "city": "New York, NY",
+  "twins": [
+    {
+      "id": "a",
+      "name": "Jordan",
+      "age": 27,
+      "pronouns": "she/her",
+      "occupation": "Product designer",
+      "hometown": "Austin, TX",
+      "height": "5'7\"",
+      "photos": [
+        "/images/placeholders/twin-a-1.svg",
+        "/images/placeholders/twin-a-2.svg",
+        "/images/placeholders/twin-a-3.svg"
+      ],
+      "prompts": [
+        { "prompt": "The way to win me over is", "answer": "A perfectly timed pun and a willingness to split dessert. (I'll still take the bigger half.)" },
+        { "prompt": "My twin would describe me as", "answer": "The planner. I've already picked the restaurant, the backup restaurant, and the after-dinner spot." },
+        { "prompt": "Green flags I look for", "answer": "You laugh at yourself, you're kind to servers, and you get along with your sibling." }
+      ]
+    },
+    {
+      "id": "b",
+      "name": "Taylor",
+      "age": 27,
+      "pronouns": "she/her",
+      "occupation": "ER nurse",
+      "hometown": "Austin, TX",
+      "height": "5'7\"",
+      "photos": [
+        "/images/placeholders/twin-b-1.svg",
+        "/images/placeholders/twin-b-2.svg",
+        "/images/placeholders/twin-b-3.svg"
+      ],
+      "prompts": [
+        { "prompt": "I'm known for", "answer": "Being 4 minutes older and never letting anyone forget it." },
+        { "prompt": "My simple pleasures", "answer": "Night-shift sunrises, the first sip of iced coffee, and karaoke with zero shame." },
+        { "prompt": "We'll get along if", "answer": "You can keep up with a twin-telepathy trivia round. We're undefeated." }
+      ]
+    }
+  ],
+  "sharedPrompts": [
+    { "prompt": "Our ideal double date", "answer": "Tacos, a dive bar with a good jukebox, and a competitive round of mini golf. Losers buy the next round." },
+    { "prompt": "Twin fact nobody believes", "answer": "We once switched places for a whole day of high school and our own mom didn't notice until dinner." }
+  ]
+}

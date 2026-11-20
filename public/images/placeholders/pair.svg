@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800" width="1000" height="800" role="img" aria-label="Twins photo placeholder">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F7C8B5"/><stop offset="0.5" stop-color="#E8836B"/><stop offset="1" stop-color="#7C97D6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="800" fill="url(#g)"/>
+  <circle cx="820" cy="150" r="190" fill="#fff" opacity="0.16"/>
+  <circle cx="140" cy="690" r="150" fill="#fff" opacity="0.12"/>
+  
+    <circle cx="360" cy="449" r="94.5" fill="#7A3B2E" opacity="0.9"/>
+    <path d="M 130.49999999999997 800 C 130.49999999999997 611, 589.5 611, 589.5 800 Z" fill="#7A3B2E" opacity="0.9"/>
+  
+    <circle cx="640" cy="449" r="94.5" fill="#2E3F6E" opacity="0.9"/>
+    <path d="M 410.5 800 C 410.5 611, 869.5 611, 869.5 800 Z" fill="#2E3F6E" opacity="0.9"/>
+  <text x="500" y="80" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="26" letter-spacing="4" fill="#fff" opacity="0.85">TWINS PHOTO PLACEHOLDER</text>
+</svg>

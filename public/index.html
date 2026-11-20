@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Date the Twins</title>
+  <meta name="description" content="Two of a kind, looking for two of a kind. Twins: apply for a double date with our featured twins.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="/"><img class="logo-mark" src="/images/logo.svg" alt=""><span data-site-name>Date the Twins</span></a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="#meet">Meet them</a>
+        <a href="#how">How it works</a>
+        <a class="btn btn-primary btn-sm" href="/apply">Apply</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Now accepting applications</span>
+          <h1 data-headline>Two of a kind, looking for <em>two of a kind.</em></h1>
+          <p class="lede" data-subhead>Meet our featured twins. If you and your twin want to go on a double date with them, build your joint profile and apply.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="/apply">Apply for a double date</a>
+            <a class="btn btn-ghost" href="#meet">Meet the twins</a>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img data-pair-photo src="/images/placeholders/pair.svg" alt="The featured twins" width="1000" height="800">
+          <div class="hero-badge"><span data-pair-name>The twins</span><small data-pair-meta></small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="meet">
+      <div class="container">
+        <div class="section-head">
+          <h2>Meet <span data-pair-name>the twins</span></h2>
+          <p>Scroll their profiles. Tap a heart if you like what you see, then apply with your twin.</p>
+        </div>
+        <div data-profiles aria-live="polite"><p class="empty">Loading profiles…</p></div>
+        <div class="pair-prompts" data-pair-prompts></div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section-head">
+          <h2>How it works</h2>
+          <p>Double dates only. You and your twin apply together.</p>
+        </div>
+        <div class="steps">
+          <div class="step"><h3>Build your profile</h3><p>Each twin adds photos and answers three prompts. Then you answer one together.</p></div>
+          <div class="step"><h3>Preview and apply</h3><p>See your joint profile exactly how the twins will see it, then submit.</p></div>
+          <div class="step"><h3>Get the call</h3><p>The twins read every application. If it's a match, we'll reach out to set up the double date.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-section">
+      <div class="container">
+        <div class="cta-band">
+          <h2>Think you're the other half of the double date?</h2>
+          <p>It takes about 10 minutes. Have your twin next to you.</p>
+          <a class="btn btn-primary" href="/apply">Start your application</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span>© <span data-year></span> <span data-site-name>Date the Twins</span></span>
+      <span>Applicants must be 18+. Both twins must agree to apply.</span>
+    </div>
+  </footer>
+
+  <script src="/js/common.js"></script>
+  <script src="/js/landing.js"></script>
+</body>
+</html>
